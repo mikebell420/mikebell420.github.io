@@ -1,3 +1,50 @@
 body {
     cursor: url("cursor-small.png"), auto;
+    background-image: url("sigil-small.png");
+    margin: 2rem 5rem 0 5rem;
+}
+
+.glow {
+    animation: glow 1s ease-in-out infinite alternate;
+}
+
+.glow-text {
+    /* color: #fff; */
+    text-shadow: 0 0 10px #00ff00;
+    animation: text-glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes text-glow {
+    from {
+        text-shadow: 0 0 5px #00ff00;
+    }
+    to {
+        text-shadow:
+            0 0 20px #00ff00,
+            0 0 30px #00ff00;
+    }
+}
+
+.typewriter {
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid;
+    animation:
+        typing 3s steps(30, end),
+        blink 0.5s step-end infinite alternate;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    50% {
+        border-color: transparent;
+    }
 }
