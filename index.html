@@ -7,19 +7,43 @@
     <body>
         <h1 class="glow-text">Mike Bell Computer Tutor</h1>
         <p class="quote"></p>
+
+        <!-- Countdown Timer -->
+        <div class="countdown-container">
+            <h2 class="glow-text">Eviction Countdown (plz support me)</h2>
+            <div class="countdown-timer">
+                <div class="time-unit">
+                    <span id="days" class="time-value">00</span>
+                    <span class="time-label">DAYS</span>
+                </div>
+                <div class="time-unit">
+                    <span id="hours" class="time-value">00</span>
+                    <span class="time-label">HOURS</span>
+                </div>
+                <div class="time-unit">
+                    <span id="minutes" class="time-value">00</span>
+                    <span class="time-label">MINUTES</span>
+                </div>
+                <div class="time-unit">
+                    <span id="seconds" class="time-value">00</span>
+                    <span class="time-label">SECONDS</span>
+                </div>
+            </div>
+        </div>
         <!-- <div class="hacker-card"> -->
-        <img src="mike.jpg" />
+        <img src="media/mike.jpg" />
         <!-- </div> -->
         <p>
             Welcome to the evildojo, I am your sensei Mike Bell the darkmage,
-            please embrace my service offerings! Ladies get 50% off!
+            please embrace my service offerings! I'm a top 1% hacker on
+            Bugcrowd. Ladies get 50% off a Vultr VPS!
         </p>
 
         <p>My services include:</p>
         <ul>
-            <li>Web Development</li>
-            <li>Database Management</li>
-            <li>Software Testing</li>
+            <li>1-on-1 Tutoring</li>
+            <li>Vibe Coding</li>
+            <li>Debug Panels</li>
         </ul>
 
         <p>
@@ -96,11 +120,75 @@
             </div>
         </div>
 
+        <div class="image-gallery">
+            <img src="media/tweet.png" width="500px" />
+            <img src="media/mike1.jpg" />
+            <img src="media/mike2.jpg" />
+            <img src="media/mike3.png" />
+            <img src="media/mike4.jpg" />
+        </div>
+
         <div class="hacker-card">
             <video width="640" height="480" controls autoplay muted loop>
-                <source src="gold-chain.webm" type="video/webm" />
+                <source src="media/gold-chain.webm" type="video/webm" />
                 Your browser does not support the video tag.
             </video>
+        </div>
+
+        <div>
+            <h2 class="glow-text">Recent Work</h2>
+            <p>Some of my recent projects:</p>
+            <ul>
+                <li>
+                    <a href="https://github.com/mikedesu/raylib-rpg-c"
+                        >Project.RPG</a
+                    >
+                </li>
+                <li>
+                    <a href="https://github.com/mikedesu/chatgpt-tools"
+                        >Custom ChatGPT tools</a
+                    >
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            <h2>Game Dev</h2>
+            <p>
+                My previous game, Skull.exe, which pioneered the use of the
+                knife catching mechanic.
+            </p>
+            <div class="skull-images">
+                <img src="media/skull.png" />
+                <img src="media/skull1.png" />
+            </div>
+        </div>
+
+        <div>
+            <h2>Media Mentions</h2>
+            <ul>
+                <li>
+                    <a
+                        href="https://www.techradar.com/pro/security/github-projects-are-being-targeted-with-malicious-action-in-apparent-attempt-to-frame-researcher"
+                        >GitHub projects are being targeted with malicious
+                        action in apparent attempt to frame this researcher |
+                        TechRadar</a
+                    >
+                </li>
+                <li>
+                    <a
+                        href="https://www.bleepingcomputer.com/news/security/github-projects-targeted-with-malicious-commits-to-frame-researcher/"
+                        >GitHub projects targeted with malicious commits to
+                        frame researcher | BleepingComputer</a
+                    >
+                </li>
+                <li>
+                    <a href="https://news.ycombinator.com/item?id=42118097"
+                        >Backdoor attempt on Exolabs GitHub repo through an
+                        innocent looking PR | Hacker News</a
+                    >
+                </li>
+            </ul>
         </div>
 
         <p>
@@ -111,6 +199,11 @@
         </p>
 
         <p>evildojo computer science 101 tutor learning python</p>
+
+        <p class="copyright">
+            Copyright &copy; 2013-2025 evildojo.com | darkmage | Mike Bell |
+            Michael Steven Bell Jr. All Rights Reserved.
+        </p>
 
         <script>
             // Array of quotes to choose from
@@ -143,7 +236,60 @@
             document.addEventListener("DOMContentLoaded", function () {
                 const quoteElement = document.querySelector(".quote");
                 quoteElement.textContent = getRandomQuote();
+
+                // Start countdown timer
+                startCountdown();
             });
+
+            // Countdown Timer to July 1st
+            function startCountdown() {
+                function updateCountdown() {
+                    const now = new Date().getTime();
+                    const currentYear = new Date().getFullYear();
+                    let targetDate = new Date(currentYear, 6, 1).getTime(); // July 1st (month is 0-indexed)
+
+                    // If July 1st has already passed this year, target next year
+                    if (now > targetDate) {
+                        targetDate = new Date(currentYear + 1, 6, 1).getTime();
+                    }
+
+                    const distance = targetDate - now;
+
+                    // Calculate time units
+                    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                    const hours = Math.floor(
+                        (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
+                    );
+                    const minutes = Math.floor(
+                        (distance % (1000 * 60 * 60)) / (1000 * 60),
+                    );
+                    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                    // Update the display
+                    document.getElementById("days").textContent = String(
+                        days,
+                    ).padStart(2, "0");
+                    document.getElementById("hours").textContent = String(
+                        hours,
+                    ).padStart(2, "0");
+                    document.getElementById("minutes").textContent = String(
+                        minutes,
+                    ).padStart(2, "0");
+                    document.getElementById("seconds").textContent = String(
+                        seconds,
+                    ).padStart(2, "0");
+
+                    // If countdown is finished
+                    if (distance < 0) {
+                        document.querySelector(".countdown-timer").innerHTML =
+                            "<span class='glow-text'>JULY 1ST HAS ARRIVED!</span>";
+                    }
+                }
+
+                // Update immediately and then every second
+                updateCountdown();
+                setInterval(updateCountdown, 1000);
+            }
         </script>
     </body>
 </html>
