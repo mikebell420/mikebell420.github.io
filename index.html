@@ -271,20 +271,20 @@
         <!-- Live Streams Section -->
         <section class="streams-section">
             <div class="hacker-card">
-                <h2 class="glow-text">Recent Live Streams</h2>
+                <h2 class="glow-text">Recent Videos</h2>
                 <div id="streams-container">
                     <div class="loading-text">
-                        <span class="glow-text">Loading streams...</span>
+                        <span class="glow-text">Loading videos...</span>
                     </div>
                 </div>
                 <div class="streams-footer">
                     <p>
                         <a
                             class="glow-text"
-                            href="https://www.youtube.com/@evildojo666/streams"
+                            href="https://www.youtube.com/@evildojo666/"
                             target="_blank"
                         >
-                            View all streams on YouTube →
+                            View all videos on YouTube →
                         </a>
                     </p>
                 </div>
@@ -425,34 +425,68 @@
                     const entries = xmlDoc.querySelectorAll("entry");
                     const videos = Array.from(entries).slice(0, 15); // Get up to 15 recent videos
 
+                    console.log(`Found ${entries.length} entries in RSS feed`);
+
                     // Filter for streams and convert to our format
                     const streams = videos
                         .map((entry) => {
                             const title =
-                                entry.querySelector("title").textContent;
-                            const link = entry
-                                .querySelector("link")
-                                .getAttribute("href");
-                            const videoId = link.split("v=")[1];
+                                entry.querySelector("title")?.textContent || "";
+                            const linkElement =
+                                entry.querySelector("link[rel='alternate']") ||
+                                entry.querySelector("link");
+                            const link =
+                                linkElement?.getAttribute("href") || "";
+
+                            // Extract video ID from YouTube URL
+                            let videoId = "";
+                            if (link.includes("watch?v=")) {
+                                videoId = link
+                                    .split("watch?v=")[1]
+                                    .split("&")[0];
+                            } else if (link.includes("/watch/")) {
+                                videoId = link
+                                    .split("/watch/")[1]
+                                    .split("?")[0];
+                            }
+
                             const published =
-                                entry.querySelector("published").textContent;
+                                entry.querySelector("published")?.textContent ||
+                                "";
+
+                            console.log(`Video: ${title}, ID: ${videoId}`);
+
+                            // Check if it's a YouTube Short (these are typically under 60 seconds)
+                            const isShort =
+                                title.toLowerCase().includes("#shorts") ||
+                                title.toLowerCase().includes("#short") ||
+                                title
+                                    .toLowerCase()
+                                    .includes("#youtubeshorts") ||
+                                title.toLowerCase().includes("#ytshorts") ||
+                                link.includes("/shorts/");
+
+                            // Only consider actual livestreams - be more specific
+                            const isLivestream =
+                                (title.toLowerCase().includes("stream") ||
+                                    title.toLowerCase().includes("live") ||
+                                    title.toLowerCase().includes("streaming") ||
+                                    title
+                                        .toLowerCase()
+                                        .includes("going live") ||
+                                    title.toLowerCase().includes("live:") ||
+                                    title.toLowerCase().includes("stream:")) &&
+                                !isShort; // Exclude shorts
 
                             return {
                                 title,
                                 videoId,
                                 published,
-                                isStream:
-                                    title.toLowerCase().includes("stream") ||
-                                    title.toLowerCase().includes("live") ||
-                                    title.toLowerCase().includes("coding") ||
-                                    title
-                                        .toLowerCase()
-                                        .includes("programming") ||
-                                    title.toLowerCase().includes("tutorial") ||
-                                    title.toLowerCase().includes("hack"),
+                                isLivestream,
+                                isShort,
                             };
                         })
-                        .filter((video) => video.isStream)
+                        // .filter((video) => video.isLivestream && video.videoId && !video.isShort)
                         .slice(0, 5); // Get up to 5 recent streams
 
                     displayStreams(streams);
