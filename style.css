@@ -294,13 +294,56 @@ section {
 .testimonials-section,
 .gallery-section,
 .video-section,
-.work-section,
-.media-section,
+.gamedev-section,
+.work-media-section,
+.streams-section,
 .connect-section {
     margin: 50px 0;
 }
 
-.work-grid {
+/* Game Dev Section - Full Width */
+.gamedev-section {
+    margin: 50px 0;
+}
+
+.gamedev-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.game-project {
+    text-align: center;
+}
+
+.game-project h3 {
+    margin-bottom: 15px;
+}
+
+.game-images {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.game-images img {
+    max-width: 300px;
+    height: auto;
+    border: 2px solid #00ff00;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #00ff00;
+}
+
+/* Work & Media Side by Side */
+.work-media-section {
+    margin: 50px 0;
+}
+
+.work-media-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 30px;
@@ -327,9 +370,18 @@ section {
         min-width: auto;
     }
 
-    .work-grid {
+    .gamedev-grid {
         grid-template-columns: 1fr;
         gap: 20px;
+    }
+
+    .work-media-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .game-images img {
+        max-width: 150px;
     }
 
     section {
@@ -340,10 +392,37 @@ section {
     .testimonials-section,
     .gallery-section,
     .video-section,
-    .work-section,
-    .media-section,
+    .gamedev-section,
+    .work-media-section,
+    .streams-section,
     .connect-section {
         margin: 30px 0;
+    }
+
+    /* Responsive streams */
+    .streams-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .stream-item {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .stream-thumbnail {
+        align-self: center;
+    }
+
+    .stream-thumbnail img {
+        width: 200px;
+        height: 112px;
+    }
+
+    .stream-info h3 a {
+        white-space: normal;
+        overflow: visible;
+        text-overflow: unset;
     }
 }
 
@@ -368,4 +447,118 @@ section {
 .copyright:after {
     content: " ]";
     color: #00ff00;
+}
+
+/* Live Streams Section */
+.streams-section {
+    margin: 50px 0;
+}
+
+.streams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.stream-item {
+    display: flex;
+    gap: 15px;
+    padding: 15px;
+    border: 1px solid #00ff00;
+    border-radius: 5px;
+    background-color: rgba(0, 255, 0, 0.05);
+    transition: all 0.3s ease;
+}
+
+.stream-item:hover {
+    background-color: rgba(0, 255, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+.stream-thumbnail {
+    position: relative;
+    flex-shrink: 0;
+}
+
+.stream-thumbnail img {
+    width: 120px;
+    height: 68px;
+    object-fit: cover;
+    border: 1px solid #00ff00;
+    border-radius: 3px;
+}
+
+.stream-overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.stream-item:hover .stream-overlay {
+    opacity: 1;
+}
+
+.stream-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.stream-info h3 {
+    margin: 0 0 10px 0;
+    font-size: 14px;
+    line-height: 1.3;
+}
+
+.stream-info h3 a {
+    color: #00ff00;
+    text-decoration: none;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.stream-info h3 a:hover {
+    text-shadow: 0 0 10px #00ff00;
+}
+
+.stream-date {
+    color: #00cc00;
+    font-size: 12px;
+    margin: 0;
+    opacity: 0.8;
+}
+
+.loading-text {
+    text-align: center;
+    padding: 40px;
+    font-style: italic;
+}
+
+.streams-footer {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #00ff00;
+}
+
+.streams-footer a {
+    color: #00ff00;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.streams-footer a:hover {
+    text-shadow: 0 0 10px #00ff00;
 }
