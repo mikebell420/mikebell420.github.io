@@ -6,12 +6,13 @@
     </head>
     <body>
         <h1 class="glow-text">Mike Bell Computer Tutor</h1>
+        <p class="quote"></p>
         <!-- <div class="hacker-card"> -->
         <img src="mike.jpg" />
         <!-- </div> -->
         <p>
-            Welcome to the evildojo, I am your sensei Mike Bell, please embrace
-            my service offerings! Ladies get 50% off!
+            Welcome to the evildojo, I am your sensei Mike Bell the darkmage,
+            please embrace my service offerings! Ladies get 50% off!
         </p>
 
         <p>My services include:</p>
@@ -110,5 +111,39 @@
         </p>
 
         <p>evildojo computer science 101 tutor learning python</p>
+
+        <script>
+            // Array of quotes to choose from
+            const quotes = [
+                "burtie[Z]: for what its worth, i have a special edition of mein kampf",
+                "i could use a hot bitch to jerk me off tho so i stop poppin my shoulders out of place",
+                "dead grandma, dead grandpa, $25k richer, new computer i built myself, whole life ahead of me \u240d missing out on a few thangz tho \u240d like pussy \u240d and violence",
+                "she's lucky i didnt kill her \u240d dumb fucking cunt",
+                "accept it \u240d or die \u240d faggot",
+                "i told a black chick just now she was a bitch \u240d she's the one that liked me \u240d so fuck her \u240d dumb cunt \u240d yeah ive fucked on 2nd date b-rex \u240d not more than once, but its happened",
+                "also, my sister is lucky to be alive \u240d im literally letting her live \u240d she's cow-towed to all of my requests since i have control of her future now \u240d",
+                "<other chatter>: i cant tell u how hospitable it felt with you saying nigger irl lol",
+                "someone's gotta dick some empathy into that daft cunt",
+                "the more a man can hurt a woman, the better he can fuck",
+                "tell it to my audience kiddo",
+                "kill god \u240d fuck niggers \u240d hail satan",
+                "ive had a rough day dealing with grandma \u240d and im ready to call everyone a nigger",
+                "once had my left-hand wrist-deep in some girl's cooter in broad daylight outside the front of a lowes",
+                "where my bitches and niggers at",
+                "dr katz was one of my earliest exposures to jewish mind control",
+            ];
+
+            // Function to get random quote
+            function getRandomQuote() {
+                const randomIndex = Math.floor(Math.random() * quotes.length);
+                return quotes[randomIndex];
+            }
+
+            // Display random quote when page loads
+            document.addEventListener("DOMContentLoaded", function () {
+                const quoteElement = document.querySelector(".quote");
+                quoteElement.textContent = getRandomQuote();
+            });
+        </script>
     </body>
 </html>
