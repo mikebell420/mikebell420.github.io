@@ -89,6 +89,31 @@ body {
     margin: 0 auto;
 }
 
+/* Random quote styling */
+.quote {
+    font-style: italic;
+    text-align: center;
+    font-size: 18px;
+    margin: 20px 0;
+    padding: 15px;
+    border: 1px solid #00ff00;
+    border-radius: 5px;
+    background-color: rgba(0, 255, 0, 0.1);
+    animation: text-glow 2s ease-in-out infinite alternate;
+}
+
+.quote:before {
+    content: '"';
+    font-size: 24px;
+    color: #00ff00;
+}
+
+.quote:after {
+    content: '"';
+    font-size: 24px;
+    color: #00ff00;
+}
+
 /* Responsive design for testimonials */
 @media (max-width: 768px) {
     .testimonials-grid {
